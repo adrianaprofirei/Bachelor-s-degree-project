@@ -1,0 +1,528 @@
+// converted by version  [v3.1.0]
+// on Wed Jun 26 13:43:42 EEST 2024
+
+.package accesscontrol {
+	.aid 0xA0:0x0:0x0:0x0:0x88:0x18:0x5:0x18:0x58;
+	.version 1.0;
+
+	.imports {
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x1 1.8;		//javacard/framework
+		0xA0:0x0:0x0:0x0:0x62:0x0:0x1 1.0;		//java/lang
+	}
+
+	.applet {
+		0xA0:0x0:0x0:0x0:0x88:0x18:0x5:0x18:0x59 accessControl;
+	}
+
+	.constantPool {
+		// 0
+		instanceFieldRef byte[] accessControl/studentInZone;
+		// 1
+		instanceFieldRef byte[] accessControl/accessZones;
+		// 2
+		instanceFieldRef 0.9 accessControl/pin;
+		// 3
+		.classRef 0.9;		// javacard/framework/OwnerPIN
+		// 4
+		staticMethodRef 0.9.0(BB)V;		// javacard/framework/OwnerPIN.<init>(BB)V
+		// 5
+		staticMethodRef 0.3.0()V;		// javacard/framework/Applet.<init>()V
+		// 6
+		virtualMethodRef 0.9.8([BSB)V;		// update([BSB)V
+		// 7
+		virtualMethodRef 0.3.1()V;		// register()V
+		// 8
+		.classRef accessControl;
+		// 9
+		staticMethodRef accessControl/<init>([BSB)V;
+		// 10
+		virtualMethodRef 0.9.2()B;		// getTriesRemaining()B
+		// 11
+		virtualMethodRef 0.9.5()V;		// reset()V
+		// 12
+		virtualMethodRef 0.10.1()[B;		// getBuffer()[B
+		// 13
+		virtualMethodRef 0.10.14()Z;		// isISOInterindustryCLA()Z
+		// 14
+		staticMethodRef 0.7.1(S)V;		// javacard/framework/ISOException.throwIt(S)V
+		// 15
+		staticMethodRef accessControl/verify(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 16
+		staticMethodRef accessControl/updatePIN(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 17
+		staticMethodRef accessControl/checkAccess(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 18
+		staticMethodRef accessControl/setAccessZones(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 19
+		staticMethodRef accessControl/exitZone(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 20
+		staticMethodRef accessControl/setStudentZones(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 21
+		virtualMethodRef 0.10.6()S;		// setIncomingAndReceive()S
+		// 22
+		virtualMethodRef 0.9.1([BSB)Z;		// check([BSB)Z
+		// 23
+		virtualMethodRef 0.9.4()Z;		// isValidated()Z
+		// 24
+		staticMethodRef 0.16.1([BS[BSS)S;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+		// 25
+		virtualMethodRef 0.10.8(SS)V;		// setOutgoingAndSend(SS)V
+		// 26
+		staticMethodRef 1.0.0()V;		// java/lang/Object.<init>()V
+	}
+
+	.class public accessControl 0 extends 0.3 {		// extends javacard/framework/Applet
+
+		.fields {
+			 0.9 pin 0;		// Ljavacard/framework/OwnerPIN;
+			 byte[] studentInZone 1;		// [B
+			 byte[] accessZones 2;		// [B
+			 byte studentId 3;		// B
+			static final byte accessControl_CLA = -128;		// B
+			static final byte VERIFY = 32;		// B
+			static final byte UPDATE_PIN = 48;		// B
+			static final byte CHECK_ACCESS = 64;		// B
+			static final byte EXIT_ZONE = 65;		// B
+			static final byte SET_ACCESS_ZONES = 80;		// B
+			static final byte SET_STUDENT_ZONE = 81;		// B
+			static final byte PIN_TRY_LIMIT = 3;		// B
+			static final byte MAX_PIN_SIZE = 8;		// B
+			static final short SW_VERIFICATION_FAILED = 25344;		// S
+			static final short SW_PIN_VERIFICATION_REQUIRED = 25345;		// S
+			static final short SW_ACCESS_DENIED = 27010;		// S
+			static final short SW_EXIT_DENIED = 27013;		// S
+		}
+
+		.publicMethodTable 4 8 {
+			equals(Ljava/lang/Object;)Z 0;
+			register()V 1;
+			register([BSB)V 2;
+			selectingApplet()Z 3;
+			deselect()V 4;
+			getShareableInterfaceObject(Ljavacard/framework/AID;B)Ljavacard/framework/Shareable; 5;
+			select()Z 6;
+			process(Ljavacard/framework/APDU;)V 7;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method private <init>([BSB)V {
+			.stack 5;
+			.locals 3;
+
+				L0:	aload_0;
+					invokespecial 5;		// javacard/framework/Applet.<init>()V
+					aload_0;
+					bspush 9;
+					newarray 11;
+					putfield_a 0;		// reference accesscontrol/accessControl.studentInZone
+					aload_0;
+					bspush 23;
+					newarray 11;
+					putfield_a 1;		// reference accesscontrol/accessControl.accessZones
+					aload_0;
+					new 3;		// javacard/framework/OwnerPIN
+					dup;
+					sconst_3;
+					bspush 8;
+					invokespecial 4;		// javacard/framework/OwnerPIN.<init>(BB)V
+					putfield_a 2;		// reference accesscontrol/accessControl.pin
+					aload_1;
+					sload_2;
+					baload;
+					sstore 4;
+				L1:	sload_2;
+					sload 4;
+					sadd;
+					sconst_1;
+					sadd;
+					sstore_2;
+					aload_1;
+					sload_2;
+					baload;
+					sstore 5;
+				L2:	sload_2;
+					sload 5;
+					sadd;
+					sconst_1;
+					sadd;
+					sstore_2;
+					aload_1;
+					sload_2;
+					baload;
+					sstore 6;
+				L3:	getfield_a_this 2;		// reference accesscontrol/accessControl.pin
+					aload_1;
+					sload_2;
+					sconst_1;
+					sadd;
+					sload 6;
+					invokevirtual 6;		// update([BSB)V
+					aload_0;
+					invokevirtual 7;		// register()V
+					return;
+		}
+
+		.method public static install([BSB)V 0 {
+			.stack 4;
+			.locals 0;
+
+				L0:	new 8;		// accesscontrol/accessControl
+					aload_0;
+					sload_1;
+					sload_2;
+					invokespecial 9;		// accesscontrol/accessControl.<init>([BSB)V
+					return;
+		}
+
+		.method public select()Z 6 {
+			.stack 1;
+			.locals 0;
+
+				L0:	getfield_a_this 2;		// reference accesscontrol/accessControl.pin
+					invokevirtual 10;		// getTriesRemaining()B
+					ifeq L2;
+				L1:	sconst_1;
+					sreturn;
+				L2:	sconst_0;
+					sreturn;
+		}
+
+		.method public deselect()V 4 {
+			.stack 1;
+			.locals 0;
+
+				L0:	getfield_a_this 2;		// reference accesscontrol/accessControl.pin
+					invokevirtual 11;		// reset()V
+					return;
+		}
+
+		.method public process(Ljavacard/framework/APDU;)V 7 {
+			.stack 2;
+			.locals 1;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 12;		// getBuffer()[B
+					astore_2;
+				L1:	aload_1;
+					invokevirtual 13;		// isISOInterindustryCLA()Z
+					ifeq L5;
+				L2:	aload_2;
+					sconst_1;
+					baload;
+					bspush -92;
+					if_scmpne L4;
+				L3:	return;
+				L4:	sspush 28160;
+					invokestatic 14;		// javacard/framework/ISOException.throwIt(S)V
+				L5:	aload_2;
+					sconst_0;
+					baload;
+					bspush -128;
+					if_scmpeq L7;
+				L6:	sspush 28160;
+					invokestatic 14;		// javacard/framework/ISOException.throwIt(S)V
+				L7:	aload_2;
+					sconst_1;
+					baload;
+					slookupswitch L14 6 32 L8 48 L9 64 L10 65 L12 80 L11 81 L13;
+				L8:	aload_0;
+					aload_1;
+					invokespecial 15;		// accesscontrol/accessControl.verify(Ljavacard/framework/APDU;)V
+					return;
+				L9:	aload_0;
+					aload_1;
+					invokespecial 16;		// accesscontrol/accessControl.updatePIN(Ljavacard/framework/APDU;)V
+					return;
+				L10:	aload_0;
+					aload_1;
+					invokespecial 17;		// accesscontrol/accessControl.checkAccess(Ljavacard/framework/APDU;)V
+					return;
+				L11:	aload_0;
+					aload_1;
+					invokespecial 18;		// accesscontrol/accessControl.setAccessZones(Ljavacard/framework/APDU;)V
+					return;
+				L12:	aload_0;
+					aload_1;
+					invokespecial 19;		// accesscontrol/accessControl.exitZone(Ljavacard/framework/APDU;)V
+					return;
+				L13:	aload_0;
+					aload_1;
+					invokespecial 20;		// accesscontrol/accessControl.setStudentZones(Ljavacard/framework/APDU;)V
+					return;
+				L14:	sspush 27904;
+					invokestatic 14;		// javacard/framework/ISOException.throwIt(S)V
+					return;
+		}
+
+		.method private verify(Ljavacard/framework/APDU;)V {
+			.stack 4;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 12;		// getBuffer()[B
+					astore_2;
+				L1:	aload_1;
+					invokevirtual 21;		// setIncomingAndReceive()S
+					s2b;
+					sstore_3;
+				L2:	getfield_a_this 2;		// reference accesscontrol/accessControl.pin
+					aload_2;
+					sconst_5;
+					sload_3;
+					invokevirtual 22;		// check([BSB)Z
+					ifne L4;
+				L3:	sspush 25344;
+					invokestatic 14;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	return;
+		}
+
+		.method private updatePIN(Ljavacard/framework/APDU;)V {
+			.stack 5;
+			.locals 3;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	getfield_a_this 2;		// reference accesscontrol/accessControl.pin
+					invokevirtual 23;		// isValidated()Z
+					ifne L2;
+				L1:	sspush 25345;
+					invokestatic 14;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 12;		// getBuffer()[B
+					astore_2;
+				L3:	aload_1;
+					invokevirtual 21;		// setIncomingAndReceive()S
+					s2b;
+					sstore_3;
+				L4:	sload_3;
+					bspush 10;
+					if_scmpeq L6;
+				L5:	sspush 26368;
+					invokestatic 14;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	sconst_5;
+					newarray 11;
+					astore 4;
+				L7:	aload_2;
+					bspush 10;
+					aload 4;
+					sconst_0;
+					sconst_5;
+					invokestatic 24;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					getfield_a_this 2;		// reference accesscontrol/accessControl.pin
+					aload_2;
+					sconst_5;
+					sconst_5;
+					invokevirtual 22;		// check([BSB)Z
+					ifne L9;
+				L8:	sspush 25344;
+					invokestatic 14;		// javacard/framework/ISOException.throwIt(S)V
+				L9:	getfield_a_this 2;		// reference accesscontrol/accessControl.pin
+					aload 4;
+					sconst_0;
+					sconst_5;
+					invokevirtual 6;		// update([BSB)V
+					return;
+		}
+
+		.method private checkAccess(Ljavacard/framework/APDU;)V {
+			.stack 3;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 12;		// getBuffer()[B
+					astore_2;
+				L1:	getfield_a_this 2;		// reference accesscontrol/accessControl.pin
+					invokevirtual 23;		// isValidated()Z
+					ifne L3;
+				L2:	sspush 25345;
+					invokestatic 14;		// javacard/framework/ISOException.throwIt(S)V
+				L3:	aload_2;
+					sconst_5;
+					baload;
+					sstore_3;
+				L4:	getfield_a_this 1;		// reference accesscontrol/accessControl.accessZones
+					sload_3;
+					baload;
+					sconst_1;
+					if_scmpne L6;
+				L5:	getfield_a_this 0;		// reference accesscontrol/accessControl.studentInZone
+					sload_3;
+					sconst_1;
+					bastore;
+					aload_2;
+					sconst_0;
+					bspush -112;
+					bastore;
+					aload_2;
+					sconst_1;
+					sconst_0;
+					bastore;
+					goto L7;
+				L6:	sspush 27010;
+					invokestatic 14;		// javacard/framework/ISOException.throwIt(S)V
+				L7:	aload_1;
+					sconst_0;
+					sconst_2;
+					invokevirtual 25;		// setOutgoingAndSend(SS)V
+					return;
+		}
+
+		.method private setAccessZones(Ljavacard/framework/APDU;)V {
+			.stack 5;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	getfield_a_this 2;		// reference accesscontrol/accessControl.pin
+					invokevirtual 23;		// isValidated()Z
+					ifne L2;
+				L1:	sspush 25345;
+					invokestatic 14;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 12;		// getBuffer()[B
+					astore_2;
+				L3:	aload_1;
+					invokevirtual 21;		// setIncomingAndReceive()S
+					s2b;
+					sstore_3;
+				L4:	sload_3;
+					bspush 23;
+					if_scmpeq L6;
+				L5:	sspush 26368;
+					invokestatic 14;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	aload_2;
+					sconst_5;
+					getfield_a_this 1;		// reference accesscontrol/accessControl.accessZones
+					sconst_0;
+					bspush 23;
+					invokestatic 24;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					return;
+		}
+
+		.method private setStudentZones(Ljavacard/framework/APDU;)V {
+			.stack 5;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	getfield_a_this 2;		// reference accesscontrol/accessControl.pin
+					invokevirtual 23;		// isValidated()Z
+					ifne L2;
+				L1:	sspush 25345;
+					invokestatic 14;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 12;		// getBuffer()[B
+					astore_2;
+				L3:	aload_1;
+					invokevirtual 21;		// setIncomingAndReceive()S
+					s2b;
+					sstore_3;
+				L4:	sload_3;
+					bspush 9;
+					if_scmpeq L6;
+				L5:	sspush 26368;
+					invokestatic 14;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	aload_2;
+					sconst_5;
+					getfield_a_this 0;		// reference accesscontrol/accessControl.studentInZone
+					sconst_0;
+					bspush 9;
+					invokestatic 24;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					return;
+		}
+
+		.method private exitZone(Ljavacard/framework/APDU;)V {
+			.stack 3;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 12;		// getBuffer()[B
+					astore_2;
+				L1:	getfield_a_this 2;		// reference accesscontrol/accessControl.pin
+					invokevirtual 23;		// isValidated()Z
+					ifne L3;
+				L2:	sspush 25345;
+					invokestatic 14;		// javacard/framework/ISOException.throwIt(S)V
+				L3:	aload_2;
+					sconst_5;
+					baload;
+					sstore_3;
+				L4:	getfield_a_this 0;		// reference accesscontrol/accessControl.studentInZone
+					sload_3;
+					baload;
+					sconst_1;
+					if_scmpeq L6;
+				L5:	sspush 27013;
+					invokestatic 14;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	getfield_a_this 0;		// reference accesscontrol/accessControl.studentInZone
+					sload_3;
+					sconst_0;
+					bastore;
+					aload_2;
+					sconst_0;
+					bspush -112;
+					bastore;
+					aload_2;
+					sconst_1;
+					sconst_0;
+					bastore;
+					aload_1;
+					sconst_0;
+					sconst_2;
+					invokevirtual 25;		// setOutgoingAndSend(SS)V
+					return;
+		}
+
+	}
+
+	.class final accessControlStrings extends 1.0 {		// extends java/lang/Object
+
+		.fields {
+			static final byte[] Package = {97,99,99,101,115,115,99,111,110,116,114,111,108};		// [B
+			static final byte[] AppletName = {97,99,99,101,115,115,67,111,110,116,114,111,108};		// [B
+		}
+
+		.publicMethodTable 1 1 {
+			equals(Ljava/lang/Object;)Z 0;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method  <init>()V {
+			.stack 1;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 26;		// java/lang/Object.<init>()V
+					return;
+		}
+
+	}
+
+}
