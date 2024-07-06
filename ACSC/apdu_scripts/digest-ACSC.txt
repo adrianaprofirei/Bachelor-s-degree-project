@@ -1,0 +1,12 @@
+Digest for accesscontrol/javacard/Directory.cap		[SHA-256: 0e55b6a22063b355b628ce3d4e0b1bd306636259fdc89de9ed9e0f4585fd83cd]
+Digest for accesscontrol/javacard/Import.cap		[SHA-256: 8cc3642a6d49023dc39aece31584cf15757e6bbcbc1e299514366eae84efce86]
+Digest for accesscontrol/javacard/StaticField.cap		[SHA-256: 6c27a579bff21fd273e1e15deee8a3f6c09938e599f9b7771148022388f8c52b]
+Digest for accesscontrol/javacard/Class.cap		[SHA-256: 581f1598b3a481ffbb2d217cb3800ca4475770488c95bc4b2652b43ca5e837e7]
+Digest for accesscontrol/javacard/Debug.cap		[SHA-256: 37d6c5f4317622716e1d06416f3c866ecb6abe02e809504249235f9b2510ed98]
+Digest for accesscontrol/javacard/Applet.cap		[SHA-256: 348fdd060682a02e1972f532d2357df84bea739f0c4204ee689c10e417a72380]
+Digest for accesscontrol/javacard/RefLocation.cap		[SHA-256: aba91548746b64e6007227c43fef12a95f4d27ac97dd8c64801f27186f806c60]
+Digest for accesscontrol/javacard/Method.cap		[SHA-256: 4b896fc9fc29a612fe6310b8de041b88723db050409c745471566912d66ffdf7]
+Digest for accesscontrol/javacard/Header.cap		[SHA-256: 4730ccd70805393c1a71119fdf012aded3aed09d3deeca131ddb6b7b5dfa9256]
+Digest for accesscontrol/javacard/Descriptor.cap		[SHA-256: 88963302957f69ea6989f76ca5023650fd43c647f8bfdacaa2e22b96939b79f8]
+Digest for accesscontrol/javacard/ConstantPool.cap		[SHA-256: 483a56daae480e6b160be48204165b053366bcfecd7c4a07d57dd2252e810abf]
+Verification completed with 0 warnings and 0 errors.

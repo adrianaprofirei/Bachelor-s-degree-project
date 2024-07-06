@@ -1,0 +1,12 @@
+// Copyright (c) 1998, 2021, Oracle and/or its affiliates. All rights reserved.
+
+// Applet Selection APDU Script
+//
+// Package:     ACSC.accesscontrol
+// Package AID: //aid/A000000088/18051858
+// Applet:      accesscontrol.accessControl
+// Applet AID:  //aid/A000000088/18051859
+//
+
+// Select accesscontrol.accessControl applet
+0x00 0xA4 0x04 0x00 0x09 0xA0 0x00 0x00 0x00 0x88 0x18 0x05 0x18 0x59 0x7F;
